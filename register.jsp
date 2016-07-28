@@ -1,4 +1,5 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ include file ="header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -6,11 +7,10 @@
 		<meta http-equiv="content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" href="img/title-3.ico" />
-		<script src="js/function.js"></script>
-		<script src="js/checkRegister.js"></script>
+		<script src="js/checkRegister.js"></script>		
 	</head>
 <body style="overflow: scroll">
-	<%@ include file ="header.jsp" %>
+	
 	<div class="container" style="padding-top:7%;">
 		<a href="index.jsp">หน้าแรก</a>
 		<span>> ลงทะเบียน</span><br/></br>
@@ -98,13 +98,8 @@
 			
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="profilepicture">ProfilePicture :</label>
-				<div class="col-sm-10">
-					<div class="fileinput fileinput-new" data-provides="fileinput">
-						<span class="btn btn-default btn-file">
-							<span>Browse... </span><input type="file" name="photo" accept="image/*" /></span>
-						<span class="fileinput-filename"></span>
-							<span class="fileinput-new">No file chosen</span>
-					</div>
+				<div class="col-sm-6">		
+					<input id="input-id" type="file" name="photo" accept="image/*" class="file" data-preview-file-type="text">
 				</div>
 			</div>
 			<div class="control-label col-sm-12"></div>

@@ -8,12 +8,20 @@
 		<meta http-equiv="content-Type" content="text/html; charset=UTF-8">
 		
 		<script src="js/jquery-1.12.4.min.js"></script>
-		<script src="bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="js/function.js"></script>
+		
+		<script src="js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
+		<script src="js/plugins/sortable.min.js" type="text/javascript"></script>
+		<script src="js/plugins/purify.min.js" type="text/javascript"></script>
+		<script src="js/fileinput.min.js"></script>
+		<script src="themes/fa/theme.js"></script>
+		<script src="bootstrap/3.3.6/js/jquery.min.js"></script>
+		<script src="bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="js/jquery.livequery.js"></script>
-
+				
 		<link rel="shortcut icon" href="img/title-3.ico" />
-		<link rel="stylesheet" type="text/css" href="bootstrap/3.3.6/css/bootstrap.min.css">		
+		<link rel="stylesheet" type="text/css" href="bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/fileinput.min.css" media="all" />
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	</head>
@@ -42,7 +50,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<span class="glyphicon glyphicon-log-in shareColor" style="font-size:20px;"></span>
 							</a>
-							<ul class="dropdown-menu" style="padding: 15px;margin-top:7px;min-width: 250px;">
+							<ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
 							<li>
 							<div class="row">
 								<div class="col-md-12">
@@ -56,10 +64,10 @@
 										<input type="password" class="form-control" id="exampleInputPassword2" name="password" placeholder="Password" required>
 										</div>
 										<div class="form-group">
-										<button type="submit" class="btn btn-success btn-block">Sign in</button>
+										<button type="submit" class="btn btn-success btn-block">LOG IN</button>
 										</div>
 										<div class="form-group">
-										<a href="help.jsp">forget your password?</a>
+										<a href="help.jsp"><center>forget your password?</center></a>
 										</div>
 									</form>
 								</div>
@@ -74,26 +82,30 @@
 						<c:set var="picturePath" value="${member.picturePath}" />
 						<c:if test="${picturePath == ''}"><li><span class="glyphicon glyphicon-user userColor"></span></li></c:if>
 						<c:if test="${picturePath != ''}"><li style="margin-top:8px;"><ul><img id="avatar" src="picture/${picturePath}"></img></ul></li></c:if>
-						<li><a id="dropbtn"><span class="glyphicon glyphicon-comment listColor" style="margin-left:10px;font-size:20px;"></span></a></li>
+						<li><a href="searchorderhistory" id="dropbtn"><span class="glyphicon glyphicon-comment listColor" style="margin-left:10px;font-size:20px;"></span></a></li>
 						<li><a href="/giftmegiveme/logout"><span class="glyphicon glyphicon-log-out logoutColor" style="font-size:20px;"></span></a></li>
 					</ul>
 					</c:if>
 					<form action="findsearch" method="POST" class="navbar-form">
 						<div class="form-group" style="display:inline;">
 							<div class="input-group" style="display:table;" >
-								<span class="input-group-addon" style="width:1%;"><span class="glyphicon glyphicon-search SearchIcon"></span></span>
-								<input class="form-control" name="search" placeholder="ค้นหาประเทศ, และ hashtag" autocomplete="off" type="text">
+								<span class="input-group-addon searchbar" style="width:1%;"><span class="glyphicon glyphicon-search SearchIcon"></span></span>
+								<input class="form-control" name="search" placeholder="ค้นหาจากชื่อประเทศหรือ hashtag" autocomplete="off" type="text">
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 			<c:if test="${username != null}">
-			<div id="myDropdown" class="dropdown-content">	
-				<div class="fixed_hiddenUserMenu">
-					<a href="editprofile.jsp"><span class="text_user">แก้ไขประวัติส่วนตัว</span></a>
-					<a href="deposit"><span class="text_user">รายการรับฝาก</span></a>
-					<a href="searchorderhistory"><span class="text_user">รายการที่สั่ง</span></a>
+			<div class="container-fluid userMenu">
+				<div id="myDropdown" class="dropdown-content">	
+					<div class="fixed_hiddenUserMenu">
+						<a href="profile.jsp"><span class="text_user">ข้อมูลส่วนตัว</span></a>
+						<a href="trip"><span class="text_user">My Trip</span></a>
+						<a href="orderlist"><span class="text_user">รายการรับฝาก</span></a>
+						<a href="searchorderhistory"><span class="text_user">รายการที่ฝากซื้อ</span></a>
+						<a href="searchalert"><span class="text_user">ประเทศที่ฝากซื้อสินค้า</span></a>
+					</div>
 				</div>
 			</div>
 			</c:if>

@@ -1,6 +1,4 @@
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
+
 public class SearchList {
 	private String idCard;
 	private String firstName;
@@ -79,7 +77,7 @@ public class SearchList {
 	}
 
 	public String getPicturePath() {
-		return "picture\\"+picturePath;
+		return picturePath;
 	}
 
 	public void setPicturePath(String picturePath) {
@@ -131,24 +129,16 @@ public class SearchList {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) throws  ParseException {
-		String[] myDate = startDate.split("\\s");
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat format2 = new SimpleDateFormat("dd MMM yyyy");
-    Date date = format1.parse(myDate[0]);
-		this.startDate = format2.format(date);
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
 	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) throws  ParseException {
-		String[] myDate = endDate.split("\\s");
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat format2 = new SimpleDateFormat("dd MMM yyyy");
-    Date date = format1.parse(myDate[0]);
-		this.endDate = format2.format(date);
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 	public String getStatus() {

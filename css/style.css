@@ -35,13 +35,13 @@ button.navbar-toggle {
 .userColor, .shareColor, .listColor, .SearchIcon, .logoutColor {
 	color:#fff;
 }
-.input-group-addon {
+.searchbar {
 	background-color:#ED1C24;
     border-radius:2px;
 	border:#ED1C24;
 }
-.input-group-addon:hover{
-    background-color:#C4161C;
+.searchbar:hover {
+	background-color:#C4161C;
 }
 img#avatar {
 	width: 32px;
@@ -230,23 +230,70 @@ span.tags {
     font-size: 16px;
     line-height: 1.5;
     border-radius: 3px;
-	
 	padding-right: 1%;
 	padding-left: 1%;
 	padding-bottom: 1%;
-}
-span.hashtagName {
-
 }
 img.remove {
 	padding-left:1%;
 	cursor: pointer;
 }
-.f1 {
-    padding: 25px;
-    background: #fff;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
+label {
+	text-align: right;
+}
+.input-data-travel {
+	position: relative;
+}
+.input-data-travel>li {
+    position: relative;
+	padding-bottom: 15px;
+}
+.hashtagList {
+	border: 1px solid #fff;
+}
+.hidden-content {
+	visibility: hidden;
+}
+#box {
+	border:1px solid #000;
+	padding-bottom: 5%;
+}
+.userMenu {
+	padding-right: 0px;
+	padding-left: 0px;
+	border: 0px;
+	border-radius: 0px;
+}
+.nav-tabs {
+    margin-bottom: 15px;
+}
+.sign-with {
+    margin-top: 25px;
+    padding: 20px;
+}
+.modal {
+	text-align: center;
+	padding: 0!important;
+}
+.modal:before {
+	content: '';
+	display: inline-block;
+	height: 85%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
+
+.modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
+.control-label {
+	padding-top: 1%;
+	font-size: 12px;
+	text-align: left;
+}
+.example-image {
+    width: 12rem;
     border-radius: 4px;
-	border:1px solid #ED1C24;
 }

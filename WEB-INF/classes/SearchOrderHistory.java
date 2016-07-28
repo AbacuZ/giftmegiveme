@@ -21,7 +21,7 @@ public class SearchOrderHistory extends HttpServlet {
 		try {
 			connect = openConnection.getDatabaseConnection();
 			statement = connect.prepareStatement(
-				"SELECT *,DATE_FORMAT(buy_date,'%d/%l/%Y %H:%m:%s')as'date' FROM travel t,member m,buy b WHERE m.member_id=t.member_id AND t.travel_id=b.travel_id AND b.member_id=?");
+				"SELECT *,DATE_FORMAT(buy_date,'%d/%l/%Y %H:%m:%s')as'date' FROM travel t,member m,buy b WHERE m.member_id=t.member_id AND t.travel_id=b.travel_id AND b.member_id=? ORDER BY date DESC");
 			statement.setString(1,member.getIdCard());
 			ResultSet result = statement.executeQuery();
 
@@ -49,5 +49,9 @@ public class SearchOrderHistory extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+			doGet(request, response);
 	}
 }

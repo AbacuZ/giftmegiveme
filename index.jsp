@@ -1,4 +1,6 @@
-﻿<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+﻿<%@ page import="search.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,12 +11,17 @@
 	<body>
 	<%@ include file ="header.jsp" %>
 	<div class="container">
+			<div id="tags">
+				<c:forEach items="${hashtagList}" var="count" begin="0" end="9">
+					<input type="submit" class="btn btn-primary btn-xs" value="#${count.hashtagName}" onclick="location.href='searchpopular?popular=${count.hashtagName}'"/>
+				</c:forEach>
+			</div>
 		<div class="row" style="padding-top:20%;">
 		<center>
 			<div class="col-md-3"></div>
 			<div class="col-md-3">
 				<div class="img_contain">
-					<a class="buy" href="search">
+					<a class="buy" href="search?search=True">
 						<img src="img/logo-02-red.png"></img>	
 					</a>
 					<p>อยากได้อะไร !<p>
@@ -62,6 +69,7 @@
 				</ul>
 			</div>
 		</div>
+	</div>
 	</footer>
 	</body>
 </html>

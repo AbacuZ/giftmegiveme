@@ -43,9 +43,17 @@
       					<a class="navbar-brand"><span class="glyphicon glyphicon-tags"></span></a>
     				</div>
 					<div id="tags">
-						<c:forEach items="${hashtagList}" var="count">
+						<c:forEach items="${hashtagList}" var="count"  begin="0" end ="9">
 							<input type="submit" class="btn btn-primary btn-xs" value="#${count.hashtagName}"
-							onclick="location.href='searchpopular?popular=${count.hashtagName}'"/>
+							onclick="location.href='searchpopular?hashtagName=${count.hashtagName}'"/>
+						</c:forEach>
+					</div>
+					
+					<div id="tags">
+					<a class="navbar-brand"><span class="glyphicon glyphicon-tags"></span></a>
+						<c:forEach items="${countryList}" var="count"   begin="0" end ="9">
+							<input type="submit" class="btn btn-primary btn-xs" value="#${count.country}"
+							onclick="location.href='searchpopular?countryName=${count.country}'"/>
 						</c:forEach>
 					</div>
 				</div>
@@ -54,6 +62,8 @@
 			<a href="index.jsp">หน้าแรก</a>
 			<span>> อยากได้อะไร</span><br/></br>
 			<div class="row">
+
+
 			<c:forEach items="${list}" var="searchlist">
 					<div class="col-sm-4">
 					      <div class="panel panel-primary" onclick="location.href='details?index=<%=count%>';" style="border:1px solid #e3e3e3; background-color: #f2f2f2; cursor:pointer;">
@@ -61,7 +71,7 @@
 
 					          <div class="row">
 					            <div class="col-sm-5" >
-					              <img src= "${searchlist.picturePath}" style="width:100px; height: 100px;"/>
+					              <img src= "picture/${searchlist.picturePath}" style="width:100px; height: 100px;"/>
 					            </div>
 					            <div class="col-sm-7" style="font-size: 2.5vw">
 					              <p class="text-capitalize"><c:out value="${searchlist.firstName}"/></p>

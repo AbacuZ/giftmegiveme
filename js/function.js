@@ -21,7 +21,7 @@
     }
   }
 }*/
-
+$("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
 function check_idcard() {
 	var IDCard = document.getElementById('idcard').value;
 

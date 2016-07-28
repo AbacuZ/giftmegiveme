@@ -4,26 +4,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@ include file ="header.jsp" %>
 <html>
 <head>
-<title>Order list | รับฝากซื้อสินค้าจากต่างประเทศเป็นเรื่องง่ายๆ</title>
-<meta http-equiv="Content-Language" content="th">
-<meta http-equiv="content-Type" content="text/html; charset=UTF-8">
-<link rel="shortcut icon" href="img/title-3.ico" />
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<script src="bootstrap/3.3.6/js/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/orderstyle.css">
-<link rel="stylesheet" href="bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="bootstrap/3.3.6//bootstrap.min.js"></script>
-<script src="js/function.js"></script>
+	<title>Order list | รับฝากซื้อสินค้าจากต่างประเทศเป็นเรื่องง่ายๆ</title>
+	<meta http-equiv="Content-Language" content="th">
+	<meta http-equiv="content-Type" content="text/html; charset=UTF-8">
+	<link rel="shortcut icon" href="img/title-3.ico" />
+	<link rel="stylesheet" href="dist/css/lightbox.min.css">
 </head>
 <body>
-<%@ include file ="header.jsp" %>
-
     <div class="container" style="padding-top:9%;">
 		<a href="index.jsp">หน้าแรก</a>
-		<span>> รายการที่สั่งซื้อ</span><br/></br>
+		<span>> รายการที่ฝากซื้อ</span><br/></br>
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
@@ -47,10 +40,18 @@
               <td><c:out value="${order.piece}"/></td>
 			  <c:choose>
                 <c:when test="${order.picProduct.equals('')}">
-					<td><img src="product/no_image_thumb.gif" width="120px" height="100px" /></td>
+					<td>
+					<a href="product/no_image_thumb.gif" data-lightbox="example-1">
+						<img class="example-image" src="product/no_image_thumb.gif" alt="image-1" />
+					</a>
+					</td>
 				</c:when>
                 <c:otherwise>
-					<td><img src="product/<c:out value='${order.picProduct}'/>" width="100px" height="100px" /></td>
+					<td>
+					<a href="product/<c:out value='${order.picProduct}'/>" data-lightbox="example-1">
+						<img class="example-image" src="product/<c:out value='${order.picProduct}'/>" alt="image-1" />
+					</a>
+					</td>
 				</c:otherwise>
               </c:choose>
               <td><c:out value="${order.currentDate}"/></!td>
@@ -60,5 +61,6 @@
         </table>
       </div>
     </div>
+	<script src="dist/js/lightbox-plus-jquery.min.js"></script>
   </body>
 </html>

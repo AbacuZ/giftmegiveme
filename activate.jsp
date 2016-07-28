@@ -12,9 +12,10 @@
 		<div id="box" style="padding-top:10%;">
 			<div id="message">
 				<center>
-					Registation link was sent to your mail Successfully. Please check your email
+					Activation link was sent to your mail Successfully. Please check your email
 				</center>
 			</div>
 		</div>
+		<meta http-equiv="refresh" content="3; url=../giftmegiveme/logout" />
   </body>
 </html>

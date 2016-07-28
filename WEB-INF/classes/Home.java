@@ -14,6 +14,7 @@ public class Home extends HttpServlet {
 		String password = user.getPassword();
 
 		if ((username != null) && (password != null)) {
+
 			dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 		} else {

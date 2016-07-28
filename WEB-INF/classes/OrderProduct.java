@@ -74,7 +74,7 @@ public class OrderProduct extends HttpServlet {
 			prepstmt.setString(8, request.getParameter("currencies"));
 			prepstmt.executeUpdate();
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("searchorderhistory");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();

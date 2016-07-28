@@ -23,9 +23,9 @@ public class OrderList extends HttpServlet {
 			connect = openConnection.getDatabaseConnection();
 			statement = connect.prepareStatement(
 				"SELECT *,DATE_FORMAT(buy_date,'%d/%l/%Y %H:%m:%s')as'date' FROM travel t,member m,buy b where m.member_id=b.member_id and t.travel_id=b.travel_id " +
-				"and t.member_id = ? and t.travel_id=?");
+				"and t.member_id = ?");
 			statement.setString(1,member.getIdCard());
-			statement.setString(2,request.getParameter("detail"));
+
 			rs = statement.executeQuery();
 
 			while (rs.next()) {

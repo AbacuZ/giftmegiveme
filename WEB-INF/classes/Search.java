@@ -22,7 +22,6 @@ public class Search extends HttpServlet {
 		PreparedStatement prepstmt = null;
 		ResultSet rs = null;
 		Connection conn = myConnect.getDatabaseConnection();
-		boolean hashtag = false;
 		ArrayList<SearchList> list = new ArrayList <SearchList>();
 
 		sql = "select * from travel t,member m where t.member_id=m.member_id and t.travel_status='1' order by t.travel_dateAnnounce desc";
@@ -60,6 +59,17 @@ public class Search extends HttpServlet {
 				hashtagList.add(addHashtag);
 	        }
 			session.setAttribute("hashtagList",hashtagList);
+
+			ArrayList<Travel> countryList = new ArrayList <Travel>();
+			sql = "SELECT travel_country,count(*) FROM travel GROUP BY travel_id order by COUNT(*) desc";
+			prepstmt = conn.prepareStatement(sql);
+			rs = prepstmt.executeQuery();
+					while (rs.next()) {
+				Travel addCountry = new Travel();
+				addCountry.setCountry(rs.getString("travel_country"));
+				countryList.add(addCountry);
+					}
+			session.setAttribute("countryList",countryList);
 			rs.close();
 			prepstmt.close();
 			conn.close();
@@ -67,14 +77,19 @@ public class Search extends HttpServlet {
 			response.setContentType("text/html; charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			log.info("Stop search");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("buy.jsp");
-			dispatcher.forward(request, response);
-
+			if(request.getParameter("search")!=null || request.getParameter("search")!="") {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("buy.jsp");
+				dispatcher.forward(request, response);
+			}
+			else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				dispatcher.forward(request, response);
+			}
 		} catch (Exception se) {
 			se.printStackTrace();
 		}
 	}
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 			doGet(request, response);
 	}

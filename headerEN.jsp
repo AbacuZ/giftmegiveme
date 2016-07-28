@@ -1,0 +1,195 @@
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gift Me | รับฝากซื้อสินค้าจากต่างประเทศเป็นเรื่องง่ายๆ</title>
+		<meta http-equiv="Content-Language" content="th">
+		<meta http-equiv="content-Type" content="text/html; charset=UTF-8">
+		
+		<script src="js/jquery-1.12.4.min.js"></script>
+		<script src="bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="js/function.js"></script>
+		<script src="js/jquery.livequery.js"></script>
+
+		<link rel="shortcut icon" href="img/title-3.ico" />
+		<link rel="stylesheet" type="text/css" href="bootstrap/3.3.6/css/bootstrap.min.css">		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top opaque-navbar" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.jsp"><img src="img/logowhite-1.png"></img></a>
+				</div>
+				<div class="navbar-collapse collapse" id="searchbar">
+					<c:set var="username" value="${user.username}" />
+					<c:if test="${username == null}">
+					<div class="navbar-form navbar-right btn-group">
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><font style="font-size:13px;">เข้าสู่ระบบ | สมัครสมาชิก</font></button>
+					</div>		
+					</c:if>
+					<c:if test="${username != null}">
+					<ul class="nav navbar-nav navbar-right">
+						<c:set var="picturePath" value="${member.picturePath}" />
+						<c:if test="${picturePath == ''}"><li><span class="glyphicon glyphicon-user userColor"></span></li></c:if>
+						<c:if test="${picturePath != ''}"><li style="margin-top:8px;"><ul><img id="avatar" src="picture/${picturePath}"></img></ul></li></c:if>
+						<li><a href="searchorderhistory" id="dropbtn"><span class="glyphicon glyphicon-comment listColor" style="margin-left:10px;font-size:20px;"></span></a></li>
+						<li><a href="/giftmegiveme/logout"><span class="glyphicon glyphicon-log-out logoutColor" style="font-size:20px;"></span></a></li>
+					</ul>
+					</c:if>
+					<form action="findsearch" method="POST" class="navbar-form">
+						<div class="form-group" style="display:inline;">
+							<div class="input-group" style="display:table;" >
+								<span class="input-group-addon searchbar" style="width:1%;"><span class="glyphicon glyphicon-search SearchIcon"></span></span>
+								<input class="form-control" name="search" placeholder="ค้นหาจากชื่อประเทศหรือ hashtag" autocomplete="off" type="text">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<c:if test="${username != null}">
+			<div class="container-fluid userMenu">
+				<div id="myDropdown" class="dropdown-content">	
+					<div class="fixed_hiddenUserMenu">
+						<a href="editprofile.jsp"><span class="text_user">ประวัติส่วนตัว</span></a>
+						<a href="trip"><span class="text_user">My Trip</span></a>
+						<a href="orderlist"><span class="text_user">รายการรับฝาก</span></a>
+						<a href="searchorderhistory"><span class="text_user">รายการที่สั่งซื้อ</span></a>
+					</div>
+				</div>
+			</div>
+			</c:if>
+		</nav>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								×</button>
+							<h4 class="modal-title" id="myModalLabel">Login/Registration</h4>
+						</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-lg-11">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#Login" data-toggle="tab">Login</a></li>
+									<li><a href="#Registration" data-toggle="tab">Registration</a></li>
+								</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="Login">
+									<form role="form" class="form-horizontal" method="post" action="login" accept-charset="UTF-8">
+										<div class="form-group">
+											<label for="username" class="col-sm-2 control-label" style="text-align:right;">Username</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="username" name="username" placeholder="username" />
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1" class="col-sm-2 control-label" style="text-align:right;">Password</label>
+											<div class="col-sm-10">
+												<input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-2">
+											</div>
+											<div class="col-sm-10">
+												<button type="submit" class="btn btn-primary btn-sm">เข้าสู่ระบบ</button>
+												<a href="help.jsp">Forgot your password?</a>
+											</div>
+										</div>
+									</form>
+								</div>
+								<div class="tab-pane" id="Registration">
+									<form class="form-horizontal" role="form">
+									 
+									<div class="form-group">
+											<div class="col-sm-6">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+													<input type="text" class="form-control" id="firstname" placeholder="First Name" />
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+													<input type="text" class="form-control" id="lastname" placeholder="Last Name" />
+												</div>
+											</div>
+									</div>
+									<div class="form-group">
+											<div class="col-sm-6">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+													<input type="number" class="form-control" id="idcard" placeholder="ID Card" />
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+													<input type="text" class="form-control" placeholder="Username" />
+												</div>
+											</div>
+									</div>
+									<div class="form-group">
+											<div class="col-sm-6">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+													<input type="password" class="form-control" id="Password" placeholder="Password" />
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="input-group">
+												<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+												<input type="password" class="form-control" id="Confirmpassword" placeholder="Confirm Password" />
+												</div>
+											</div>
+									</div>
+									<div class="form-group">
+										<label for="email" class="col-sm-12 control-label">อีเมล*</label>
+											<div class="col-sm-12">
+												<input type="email" class="form-control" id="email" placeholder="Email" />
+											</div>
+									</div>
+									
+									<div class="form-group">
+										<label for="Password" class="col-sm-4 control-label">ไอดีไลน์*</label>
+										<label for="Confirmpassword" class="col-sm-4 control-label">เบอร์โทรศัพท์*</label>
+										<label for="Confirmpassword" class="col-sm-4 control-label">Confirm password*</label>
+											<div class="col-sm-4">
+												<input type="email" class="form-control" id="Password" placeholder="Password" />
+											</div>
+											<div class="col-sm-4">
+												<input type="email" class="form-control" id="Confirmpassword" placeholder="Confirm password" />
+											</div>
+											<div class="col-sm-4">
+												<input type="email" class="form-control" id="Confirmpassword" placeholder="Confirm password" />
+											</div>
+									</div>
+									
+										<div class="row">
+											<div class="col-sm-2">
+											</div>
+											<div class="col-sm-10">
+												<button type="button" class="btn btn-primary btn-sm">Save & Continue</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

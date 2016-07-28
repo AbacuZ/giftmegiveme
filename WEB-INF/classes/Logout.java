@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 public class Logout extends HttpServlet {
-	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 
 		RequestDispatcher dispatcher;
@@ -12,5 +12,10 @@ public class Logout extends HttpServlet {
 		session.invalidate();
 		dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+			doGet(request, response);
 	}
 }

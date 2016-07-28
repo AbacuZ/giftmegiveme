@@ -8,19 +8,8 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body >
-	<div class="header" id="header">
-		<div class="contain">
-			<div class="header_font">
-				<a href="index.jsp"><img src="img/logowhite-1.png"></img></a>
-			</div>
-			<div class="find_form">
-				<form action="" method="POST">
-					<input type="search" id="search" placeholder="ค้นหาประเทศ, ค้นหาเมือง, ค้นหาสินค้าหรือหมวดหมู่" autocomplete="off"></input>
-				</form>
-			</div>
-		</div>
-	</div>
-		<div id="box">
+	<%@ include file ="header.jsp" %>
+		<div id="box" style="padding-top:7%;">
 			<div id="passwordform">
 				<center>
 					<form class="" action="reset" method="post">

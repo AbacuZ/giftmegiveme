@@ -183,4 +183,67 @@
 		<servlet-name>HashtagSelection</servlet-name>
 		<url-pattern>/details</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Trip</servlet-name>
+		<servlet-class>Trip</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Trip</servlet-name>
+		<url-pattern>/trip</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Alert</servlet-name>
+		<servlet-class>Alert</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Alert</servlet-name>
+		<url-pattern>/alert</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SearchAlert</servlet-name>
+		<servlet-class>SearchAlert</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchAlert</servlet-name>
+		<url-pattern>/searchalert</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+    <servlet-name>EditPassword</servlet-name>
+    <servlet-class>EditPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditPassword</servlet-name>
+    <url-pattern>/change_password</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EditEmail</servlet-name>
+    <servlet-class>EditEmail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditEmail</servlet-name>
+    <url-pattern>/change_email</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EditPicture</servlet-name>
+    <servlet-class>EditPicture</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditPicture</servlet-name>
+    <url-pattern>/change_picture</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EditProfile</servlet-name>
+    <servlet-class>EditProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditProfile</servlet-name>
+    <url-pattern>/change_profile</url-pattern>
+  </servlet-mapping>
 </web-app>

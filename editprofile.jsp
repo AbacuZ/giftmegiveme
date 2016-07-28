@@ -1,133 +1,163 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
-	<head>
-	<title>EditProfile | รับฝากซื้อสินค้าจากต่างประเทศเป็นเรื่องง่ายๆ</title>
-	<meta charset="utf-8">
-	<meta http-equiv="content-Type" content="text/html; charset=UTF-8">
-	<link rel="shortcut icon" href="img/title-3.ico" />
-	<script type="text/javascript">
-	function chk_form(){
-	$(":input + span.require").remove();
-		$("#password ").each(function(){
-			$(this).each(function(){
-				if ($(this).val()=="") {
-					$(this).after("<span class=require style=color:red> *จำเป็นต้องกรอก</span>");
-				}
-			});
-		});
-		$("#confirmPassword ").each(function(){
-			$(this).each(function(){
-				if ($(this).val()=="") {
-					$(this).after("<span class=require style=color:red> *จำเป็นต้องกรอก</span>");
-				}
-			});
-		});
-		$("#picture ").each(function(){
-			$(this).each(function(){
-				if ($(this).val()=="") {
-					$(this).after("<span class=require style=color:red> *จำเป็นต้องใส่รูปด้วย</span>");
-				}
-			});
-		});
-		if ($(":input").next().is(".require")==false) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	</script>
-	</head>
-<body style="overflow:scroll">
-<%@ include file ="header.jsp" %>
-	<div class="container" style="padding-top:10%;">
-	<a href="index.jsp">หน้าแรก</a>
-	<span>> แก้ไขประวัติส่วนตัว</span><br/></br>
-		<div class="col-lg-12 well">
-		<div class="row">
-		<form id="fromedit" onsubmit="return chk_form()" action="edit" method="POST" enctype="multipart/form-data" class="signup_form" >
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="idcard">Username :</label>
-				<div class="col-sm-10">
-					<input type="text" name="username" class="form-control" id="username" onchange="check_username()" value="${sessionScope.user.username}">
-					<span id="username_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group has-feedback">
-				<label class="control-label col-sm-2" for="idcard">Password :</label>
-				<div class="col-sm-10">
-					<input type="password" name="password" class="form-control css-require" id="password" onchange="check_password()" placeholder="Enter Password">
-					<span id="password_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="idcard">ConfirmPassword :</label>
-				<div class="col-sm-10">
-					<input type="password" name="confirmPassword" class="form-control" id="confirmPassword" onchange="check_confirmPassword()" placeholder="Confirm Password" >
-					<span id="confirmPassword_text" style="color:red"</span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="idcard">Name :</label>
-				<div class="col-sm-10">
-					<input type="text" name="firstname" class="form-control" id="firstname" onchange='check_firstName()' value="${sessionScope.member.firstName}">
-					<span id="firstname_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="idcard">Lastname :</label>
-				<div class="col-sm-10">
-					<input type="text" name="lastname" class="form-control" id="lastname" onchange='check_lastName()' value="${sessionScope.member.lastName}">
-					<span id="lastName_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="lastname">Telephone :</label>
-				<div class="col-sm-10">
-					<input type="number" name="telephone" class="form-control" id="telephone" onchange='check_telephone()' value="${sessionScope.member.phoneNumber}">
-					<span id="telephone_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="lastname">E-mail :</label>
-				<div class="col-sm-10">
-					<input type="email" name="email" class="form-control" id="email" onchange='check_email()' autocomplete="off" value="${sessionScope.member.email}">
-					<span id="email_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="lastname">LineID :</label>
-				<div class="col-sm-10">
-					<input type="text" name="lineID" class="form-control" id="lineID" onchange='check_lineId()' autocomplete="off" value="${sessionScope.member.lineId}">
-					<span id="lineId_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="address">Address :</label>
-				<div class="col-sm-10">
-					<input type="textarea" name="address" id="address" class="form-control" onchange='check_address()' value="${sessionScope.member.address}">
-					<span id="address_text" style="color:red;"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="profilepicture">ProfilePicture :</label>
-				<div class="col-sm-10">
-					<div class="fileinput fileinput-new" data-provides="fileinput">
-						<span class="btn btn-default btn-file">
-							<span>Browse... </span><input type="file" name="photo" accept="image/*" /></span>
-						<span class="fileinput-filename"></span>
-							<span class="fileinput-new">No file chosen</span>
-					</div>
-				</div>
-			</div>
-			<div class="form-group col-sm-2"></div>
-			<div class="form-group col-sm-8">
-				<input type="submit" class="btn btn-success" value="Confirm" />
-				<input type="submit" class="btn btn-success" value="Cancel" />
-			</div>
-			<div class="form-group col-sm-2"></div>
-		</form>
-		</div>
-		</div>
-	</div>
-</body>
+ <head>
+   <title>Buy | รับฝากซื้อสินค้าจากต่างประเทศเป็นเรื่องง่ายๆ</title>
+   <meta charset="utf-8">
+	   <meta http-equiv="Content-Language" content="th">
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
+	   <link rel="shortcut icon" href="img/title-3.ico" />
+	   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	   <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+     <style>
+       #content {
+         margin-top: 10%;
+       }
+     </style>
+ </head>
+
+ <body style="overflow: scroll">
+  <%@ include file ="header.jsp" %>
+    <div class="container" id="content">
+  	<a href="index.jsp">หน้าแรก</a>
+  	<span>> ข้อมูลส่วนตัว</span><br/></br>
+      <div class="row">
+        <div class="col-sm-12" style="background-color:#f2f2f2">
+          <center>
+          <div class="w3-light-grey">
+              <h4 style="padding-top:3%;">
+              <img src= "picture/${sessionScope.member.picturePath}" class="img-circle" alt="Avatar" style="border-style: solid; border-width: 5px; border-color: white; width:175px; height: 175px; object-fit: contain; background-color: #fff;">
+              </br><span style="background-color: white; padding-top: 1%; padding-bottom: 1%; padding-right:5% ; padding-left: 5%"><strong><c:out value = "${sessionScope.user.username}"/></strong></span>
+          </div>
+          </center>
+          </div>
+        </div>
+
+
+
+      <div class="row" style="background-color:#f2f2f2; padding-top: 5%;">
+
+        <div class="col-sm-1">
+
+        </div>
+
+        <div class="col-sm-10">
+          <ul class="nav nav-tabs">
+              <li class="active"><a href="#info">ข้อมูลส่วนตัว</a></li>
+          </ul>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="info">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-10" >
+
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                </br></br><span style="font-size: 130%;">เลขประจำตัวประชาชน : </span>
+                </div>
+                <div class="col-sm-6">
+                </br></br><span style="font-size: 130%;"><c:out value = "${sessionScope.member.idCard}"/></span>
+                </div>
+              </div>
+							<form action="change_profile" method="post">
+
+							  <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                </br><span style="font-size: 130%;">ชื่อ-นามสกุล :</span>
+                </div>
+                <div class="col-sm-3" >
+
+                </br><input  type="text" style="font-size: 120%; display:inline;" name="firstname" class="form-control input-group" value="${sessionScope.member.firstName}"/>
+
+                </div>
+
+								<div class="col-sm-3" >
+								</br><input  type="text" style="font-size: 125%; display:inline;" name="lastname" class="form-control input-group" value="${sessionScope.member.lastName}"/>
+								</div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                </br><span style="font-size: 130%;">เพศ : </span>
+                </div>
+
+                <div class="col-sm-6">
+                </br><span style="font-size: 130%;">
+
+                  <c:choose>
+                    <c:when test="${sessionScope.member.gender.equals('f')}">
+											<input type="radio" name="gender" value="m" > Male
+											<input type="radio" name="gender" value="f" checked > Female
+                    </c:when>
+                    <c:otherwise>
+											<input type="radio" name="gender" value="m" checked> Male
+											<input type="radio" name="gender" value="f" > Female
+                    </c:otherwise>
+                  </c:choose>
+                </span>
+                </div>
+              </div>
+
+              <div class="row" >
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                </br><span style="font-size: 130%;">เบอร์โทรศัพท์ : </span>
+                </div>
+                <div class="col-sm-6">
+                </br><input type="number" name="telephone" class="form-control" id="telephone" onchange='check_telephone()' value="${sessionScope.member.phoneNumber}">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                </br><span style="font-size: 130%;">Line ID : </span>
+                </div>
+                <div class="col-sm-6">
+                </br><input type="text" name="lineID" class="form-control" id="lineID" onchange='check_lineId()' autocomplete="off" value="${sessionScope.member.lineId}">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                </br><span style="font-size: 130%;">ที่อยู่ : </span>
+                </div>
+                <div class="col-sm-6">
+                </br><input type="textarea" name="address" id="address" class="form-control" onchange='check_address()' value="${sessionScope.member.address}">
+                </div>
+              </div>
+
+              <div class="row">
+								<div class="col-sm-10">
+
+								</div>
+                <div class="col-sm-2" >
+									<div style="float: right;">
+											</br></br><button type="button" class="btn btn-info" onclick="location.href='profile.jsp'"> Back</button>
+										<input type="submit" class="btn btn-info" value=" Save"></input>
+
+									</div>
+
+
+              </div>
+
+            </div>
+          </div>
+            </form>
+
+
+            </div>
+          </div>
+
+
+ </body>
 </html>

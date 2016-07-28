@@ -21,7 +21,6 @@
      #content {
        margin-top: 10%;
      }
-
      #tagbar {
        background-color: black;
        margin: 0;
@@ -29,6 +28,7 @@
      #tags {
        padding-top: 2%;
      }
+
 	 #row_detail {
 		background-color:#F5F5F5;
 		border-radius: 5px;
@@ -42,17 +42,17 @@
     <div class="container" id="content">
 	<a href="index.jsp">หน้าแรก</a> >
 	<a href="search">อยากได้อะไร</a>
-	<span>> รายละเอียดอยากได้อะไร</span><br/></br>
+	<span>> รายละเอียด</span><br/></br>
     <c:forEach items="${list}" var="searchlist" begin="<%=position%>" end ="<%=position%>" step="1" >
       <div class="row" id="row_detail">
         <div class="col-sm-1" >
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 ">
           <div class="row">
           <div class="w3-light-grey" style="width:50%">
             <div class="w3-container w3-center" style="margin-top:15%;background-color:#337ab7;color:white;border-radius:5px;">
               <h4 style="padding-top:2%;padding-bottom:2%"></h4>
-              <img src= "${searchlist.picturePath}" class="img-responsive" alt="Avatar" style="width:150; height:150; margin-bottom:5%">
+              <img src= "picture/${searchlist.picturePath}" class="img-responsive" alt="Avatar" style="width:150px; height: 150px; object-fit: contain; background-color: #fff; margin-bottom:5%">
                 <div style="padding: 1px;">
                 <h4 class="text-capitalize">${searchlist.firstName}</h4></div>
             </div>
@@ -77,11 +77,13 @@
             <div class="navbar-header">
               <a class="navbar-brand"><span class="glyphicon glyphicon-tags"></span></a>
             </div>
+
             <div id="tags">
               <c:forEach items="${tagList}" var="count">
                 <input type="submit" class="btn btn-primary btn-xs" value="#${count.tagName}" onclick="location.href='searchpopular?popular=${count.tagName}'"/>
               </c:forEach>
             </div>
+
           </div></br></br>
 			<div style="float:right;">
 				<form id='formBack' action="search" method="POST"></form>
@@ -92,7 +94,7 @@
             <c:when test="${memberID == null}">
             </c:when>
             <c:when test="${!memberID.equals(searchID)}">
-              <button type="submit" class="btn btn-info" name="buyProduct" value="${searchlist.travelId}">Order</button>
+              <button type="submit" class="btn btn-info" name="buyProduct" value="${searchlist.travelId}">ฝากซื้อสินค้า</button>
             </c:when>
           </c:choose>
 			<button type="submit" value="Cancel" form="formBack" class="btn btn-info">Cancel</button>

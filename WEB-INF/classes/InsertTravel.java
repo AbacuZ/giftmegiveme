@@ -6,21 +6,21 @@ import java.sql.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
-
+import java.net.*;
 public class InsertTravel extends HttpServlet {
 
 	private final  DatabaseConnection myConnect = new DatabaseConnection();
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws IOException, ServletException {
 
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		
+
 	try {
 		if (request.getParameter("startDate") != null) {
 			HttpSession session = request.getSession(false);
-			Member member = (Member)session.getAttribute("member");	          
+			Member member = (Member)session.getAttribute("member");
 			Connection conn = myConnect.getDatabaseConnection();
 			PreparedStatement prepstmt = conn.prepareStatement(
 				"insert into travel (travel_country,travel_detail,travel_dateStart,travel_dateEnd,member_id,travel_status,travel_dateAnnounce) VALUES (?,?,?,?,?,?,?)");
@@ -39,7 +39,7 @@ public class InsertTravel extends HttpServlet {
 			prepstmt.setString(1, request.getParameter("startDate"));
 			prepstmt.setString(2, member.getIdCard());
 			ResultSet rs = prepstmt.executeQuery();
-			
+
 			int travelId = 0;
 			while (rs.next()) {
 				travelId = rs.getInt("travel_id");
@@ -55,6 +55,19 @@ public class InsertTravel extends HttpServlet {
 				prepstmt.setString(2, hashtags[i]);
 				prepstmt.executeUpdate();
 			}
+
+			prepstmt = conn.prepareStatement("select * from want_buy wb,member m where m.member_id=wb.member_id and wb.want_buy_country=?");
+			prepstmt.setString(1,request.getParameter("country"));
+			rs = prepstmt.executeQuery();
+			while (rs.next()) {
+				String countryName = rs.getString("want_buy_country");
+				if(request.getParameter("country").equals(countryName)) {
+					EmailSending.sendEmail(rs.getString("member_email"),"do you want to buy from item "+request.getParameter("country"),"you can find at"+" http://"+InetAddress.getLocalHost().getHostAddress()+":8080/giftmegiveme/findsearch?search="+request.getParameter("country")+"");
+				}
+			}
+
+
+
 			rs.close();
 			prepstmt.close();
 			conn.close();

@@ -18,7 +18,7 @@
 			<div class="col-md-3"></div><br />
 			<ul>
 			<li style="border-bottom:1px solid #000;">
-				<h2><span class="glyphicon glyphicon-shopping-cart"></span>สั่งซื้อสินค้า</h2>
+				<h2><span class="glyphicon glyphicon-shopping-cart"></span> ฝากซื้อสินค้า</h2>
 				<span class="required_notification">* Denotes Required Field</span>
 			</li>
 			<div class="col-md-6"><br />
@@ -43,8 +43,8 @@
 				</span>
 			</li>
 			<li>
-				<button type="submit" name="travelId" value="<%= request.getParameter("buyProduct")%>" class="btn btn-info">Order</button>
-				<button type="submit" value="Cancel" form="formBack" class="btn btn-info">Cancel</button>
+				<button type="submit" name="travelId" value="<%= request.getParameter("buyProduct")%>" class="btn btn-info">ฝากซื้อสินค้า</button>
+				<button type="submit" value="Cancel" form="formBack" class="btn btn-info">ยกเลิก</button>
 			</li>
 			</ul>
 			</form>
