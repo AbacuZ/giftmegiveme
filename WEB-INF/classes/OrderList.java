@@ -37,6 +37,8 @@ public class OrderList extends HttpServlet {
 				buyorderlist.setCurrentDate(rs.getString("date"));
 				buyorderlist.setNameMember(rs.getString("member_firstname"));
 				buyorderlist.setIdCard(rs.getString("member_id"));
+				buyorderlist.setCountry(rs.getString("travel_country"));
+				buyorderlist.setTravelId(rs.getInt("travel_id"));
 				list.add(buyorderlist);
 			}
 			session.setAttribute("buyorderlist",list);

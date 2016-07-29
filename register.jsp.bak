@@ -22,7 +22,7 @@
 			<div class="form-group">
 				<label label class="control-label col-sm-2">ID Card :</label>
 				<div class="col-sm-10 ">
-					<input type="number" name="IDcard" class="form-control " id="idcard" onchange='check_idcard()' placeholder="รหัสบัตรประชาชน 13 หลัก">
+					<input type="text" name="IDcard" class="form-control " id="idcard" onchange='check_idcard()' placeholder="รหัสบัตรประชาชน 13 หลัก">
 					<div id="idcard_text" style="color:red;"></div>
 				</div>
 			</div>

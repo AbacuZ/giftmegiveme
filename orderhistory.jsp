@@ -21,23 +21,26 @@
         <table class="table table-hover">
           <thead>
             <tr class="success">
-              <th>เลขบัตรประชาชน</th>
+							<th>ประเทศ</th>
               <th>คนที่เราฝากซื้อ</th>
               <th>สินค้า</th>
               <th>ราคา</th>
               <th>จำนวน</th>
               <th>รูปภาพ</th>
               <th>วันที่ทำรายการ</th>
+							<th>รายละเอียด</th>
             </tr>
           </thead>
           <tbody>
+						<% int count = 0;%>
             <c:forEach items="${order_history}" var="order">
             <tr class="info">
-              <td><c:out value="${order.idCard}"/></td>
+							<td><c:out value="${order.country}"/></td>
               <td><c:out value="${order.nameMember}"/></td>
               <td><c:out value="${order.productName}"/></td>
               <td><fmt:formatNumber type="number" minFractionDigits="2" value="${order.priceProduct}" /></td>
               <td><c:out value="${order.piece}"/></td>
+							<td><c:out value="${order.travelId}"/></td>
 			  <c:choose>
                 <c:when test="${order.picProduct.equals('')}">
 					<td>
@@ -55,7 +58,9 @@
 				</c:otherwise>
               </c:choose>
               <td><c:out value="${order.currentDate}"/></!td>
+
             </tr>
+						<% count++;%>
           </c:forEach>
           </tbody>
         </table>

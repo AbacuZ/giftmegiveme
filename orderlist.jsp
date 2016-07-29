@@ -22,7 +22,8 @@
       <table class="table table-hover">
         <thead>
           <tr class="success">
-            <th>คนที่เราฝาก</th>
+            <th>ประเทศ</th>
+            <th>คนที่ฝากเรา</th>
             <th>สินค้า</th>
             <th>ราคา</th>
             <th>จำนวน</th>
@@ -34,6 +35,8 @@
 
           <c:forEach items="${buyorderlist}" var="order">
             <tr class="info">
+
+              <td><c:out value="${order.country}"/></td>
               <td><c:out value="${order.nameMember}"/></td>
               <td><c:out value="${order.productName}"/></td>
               <td><fmt:formatNumber type="number" minFractionDigits="2" value="${order.priceProduct}" /></td>

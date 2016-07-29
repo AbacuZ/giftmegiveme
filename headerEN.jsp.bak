@@ -33,7 +33,7 @@
 					<c:set var="username" value="${user.username}" />
 					<c:if test="${username == null}">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#" class="signup">สมัครสมาชิก</a></li>
+						<li><a href="#" class="signup"><font style="color:#fff;"><span class="glyphicon glyphicon-user"></span> Sign Up</font></a></li>
 						<li><a href="#"><font style="color:#fff;"><span class="glyphicon glyphicon-log-in"></span> Login</font></a></li>
 					</ul>
 					</c:if>

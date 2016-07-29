@@ -299,7 +299,7 @@ label {
 }
 .signup {
 	margin-left: 15px;
-	color: #fff;
+	color: #000;
     background-color: #ff606b;
     background-image: linear-gradient(to bottom, #ff6671, #ff606b);
 }

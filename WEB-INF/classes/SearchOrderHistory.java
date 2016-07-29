@@ -35,6 +35,8 @@ public class SearchOrderHistory extends HttpServlet {
 				orderhistorys.setNameMember(result.getString("member_firstname"));
         orderhistorys.setLastNameMember(result.getString("member_lastname"));
 				orderhistorys.setIdCard(result.getString("member_id"));
+        orderhistorys.setCountry(result.getString("travel_country"));
+        orderhistorys.setTravelId(result.getInt("travel_id"));
 				list.add(orderhistorys);
 			}
 			session.setAttribute("order_history",list);

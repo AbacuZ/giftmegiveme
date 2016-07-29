@@ -8,6 +8,9 @@ public class OrderHistory {
   private String nameMember;
   private String idCard;
 	private String lastNameMember;
+	private String country;
+	private int travelId;
+
 	public String getProductName() {
 		return productName;
 	}
@@ -55,5 +58,19 @@ public class OrderHistory {
 	}
 	public void setLastNameMember(String lastNameMember) {
 		this.lastNameMember = lastNameMember;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public int getTravelId() {
+		return travelId;
+	}
+	public void setTravelId(int travelId) {
+		this.travelId = travelId;
 	}
 }
