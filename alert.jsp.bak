@@ -26,7 +26,7 @@ $(document).ready(function(){
 </head>
 <body>
     <div class="container" style="padding-top:9%;">
-		<a href="index.jsp">หน้าแรก</a>
+		<a href="index.jsp">หน้าแรก/</a>
 		<span>> ประเทศที่ฝากซื้อสินค้า</span><br/></br>
       <div class="table-responsive">
           <input type="button" class="btn btn-info" value="เพิ่มการแจ้งเตือน"><br>

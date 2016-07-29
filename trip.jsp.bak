@@ -19,7 +19,7 @@
 
 	<body>
 							<div class="container" style="padding-top:9%;">
-									<a href="index.jsp"><font style="color: #337ab7;">หน้าแรก</font></a>
+									<a href="index.jsp">หน้าแรก</a>
 									<span>> My Trip</span><br/></br>
 									<div class="table-responsive">
 										<table class="table table-hover">
