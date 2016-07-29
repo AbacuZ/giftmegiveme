@@ -80,7 +80,7 @@
 
             <div id="tags">
               <c:forEach items="${tagList}" var="count">
-                <input type="submit" class="btn btn-primary btn-xs" value="#${count.tagName}" onclick="location.href='searchpopular?popular=${count.tagName}'"/>
+                <input type="submit" class="btn btn-primary btn-xs" value="#${count.tagName}" onclick="location.href='searchpopular?hashtagName=${count.tagName}'"/>
               </c:forEach>
             </div>
 
