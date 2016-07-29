@@ -51,7 +51,7 @@ public class SearchPopular  extends HttpServlet {
 			}
 		}
 		if (request.getParameter("countryName") != null) {
-			sql = "select * from travel t,member m where m.member_id=t.member_id and travel_status='1' " +
+			sql = "select * from travel t,member m,hashtag h where h.travel_id=t.travel_id and m.member_id=t.member_id and travel_status='1' "+
 				  "and t.travel_country=? order by t.travel_dateAnnounce desc";
 			prepstmt = conn.prepareStatement(sql);
 			prepstmt.setString(1,request.getParameter("countryName"));
